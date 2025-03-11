@@ -4,6 +4,7 @@ Due: 3/12/25 11:59pm
 
 After reading the specs, start populating a list of things you might have to do to finish this project.
 
-1) read the specs - understand the problem
+1) Read the specs - understand the problem
 2) Understand map-based input files
-3) create multiple test maps
+3) Create multiple test maps
+4) Add map reader which gets information from the map and sorts it in the form of tiles
