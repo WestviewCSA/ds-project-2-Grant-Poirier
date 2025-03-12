@@ -6,9 +6,13 @@ public class p2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("p2");
+		//System.out.println("p2");
 		
-		readMap("TEST01");
+		readMap("src/TEST01");
+		readMap("src/TEST02");
+		readMap("src/TEST03");
+		readMap("src/TEST04");
+		readMap("src/TEST05");
 	}
 	
 	public static void readMap(String filename) {
@@ -26,6 +30,7 @@ public class p2 {
 			while (scanner.hasNextLine()) {
 				//grab a line (one row of the map)
 				String row = scanner.nextLine();
+				System.out.println(row);
 				
 				if (row.length()>0) {
 					for(int i = 0; i < numCols && i < row.length(); i++) {
