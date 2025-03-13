@@ -8,3 +8,4 @@ After reading the specs, start populating a list of things you might have to do 
 2) Understand map-based input files
 3) Create multiple test maps
 4) Add map reader which gets information from the map and sorts it in the form of tiles
+5) sort tiles into 2d arrays that hold information on where they are and what they do

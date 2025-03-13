@@ -25,6 +25,9 @@ public class p2 {
 			int numCols  = scanner.nextInt();
 			int numRooms = scanner.nextInt();
 			int rowIndex = 0;
+			int roomIndex = 0;
+			
+			Tile[][][] tiles = new Tile[numRows][numCols][numRooms];
 			
 			//process the map!
 			while (scanner.hasNextLine()) {
@@ -33,11 +36,16 @@ public class p2 {
 				System.out.println(row);
 				
 				if (row.length()>0) {
-					for(int i = 0; i < numCols && i < row.length(); i++) {
-						char el = row.charAt(i);
-						Tile obj = new Tile(rowIndex, i, el);
+					for(int colIndex = 0; colIndex < numCols && colIndex < row.length(); colIndex++) {
+						char el = row.charAt(colIndex);
+						Tile obj = new Tile(rowIndex, colIndex, el);
+						tiles[rowIndex][colIndex][roomIndex] = obj;
 						
+						if(obj.getType() == 'W') {
+							System.out.println( "(" + colIndex + ","  + rowIndex + ")");
+						}
 					}
+					rowIndex++;
 				}
 			}
 			
