@@ -5,14 +5,10 @@ import java.util.Scanner;
 public class p2 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//System.out.println("p2");
 		
-		readMap("src/TEST01");
-//		readMap("src/TEST02");
-//		readMap("src/TEST03");
-//		readMap("src/TEST04");
-		//readMap("src/TEST05");
+		String filename = "src/TEST03";
+		readMap(filename);
+		
 	}
 	
 	public static void readMap(String filename) {
@@ -31,12 +27,15 @@ public class p2 {
 			
 			Tile[][][] tiles = new Tile[numRows][numCols][numRooms];
 			
+			int wolverineRow = -1; 
+			int wolverineCol = -1;
+			
 			//process the map!
 			while (scanner.hasNextLine()) {
 				
 				//grab a line (one row of the map)
 				String row = scanner.nextLine();
-				System.out.println(row);
+				//System.out.println(row);
 				
 				if (row.length()>0) {
 					
@@ -46,15 +45,19 @@ public class p2 {
 						Tile obj = new Tile(rowIndex, colIndex, el);
 						tiles[rowIndex][colIndex][roomIndex] = obj;
 						
-						System.out.println("Tile at (" + tiles[rowIndex][colIndex][roomIndex].getRow() 
-								+ ", " + tiles[rowIndex][colIndex][roomIndex].getCol() + ", " 
-								+ tiles[rowIndex][colIndex][roomIndex].getType() + ")");
 						
+						if(el == 'W') {
+							wolverineRow = rowIndex;
+							wolverineCol = colIndex;
+						}
+						
+						System.out.println("W at (" + wolverineRow + ", " + wolverineCol + ")");
 					}
 					
 					rowIndex++;
 				}
 			}
+			
 			
 		}catch (FileNotFoundException e){
 			System.out.println(e);
