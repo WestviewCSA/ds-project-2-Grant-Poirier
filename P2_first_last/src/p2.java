@@ -1,9 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 public class p2 {
-
 	public static void main(String[] args) {
 		
 		String filename = "src/TEST03";
@@ -27,7 +25,7 @@ public class p2 {
 			
 			Tile[][][] tiles = new Tile[numRows][numCols][numRooms];
 			
-			int wolverineRow = -1; 
+			int wolverineRow = -1;
 			int wolverineCol = -1;
 			
 			//process the map!
@@ -63,15 +61,6 @@ public class p2 {
 			System.out.println(e);
 		}
 		
-	}
-	
-	
-	public String pathFinder() {
-		
-		
-		
-		
-		return "";
 	}
 	
 	
