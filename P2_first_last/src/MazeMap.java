@@ -31,7 +31,7 @@ public class MazeMap {
 
     // Helper method to check if the coordinates are valid
     public boolean isValid(int row, int col, int roomIndex) {
-        return row >= 0 && row < numRows && col >= 0 && col < numCols && map[roomIndex][row][col].getType() != '@';
+        return row >= 0 && row < numRows && col >= 0 && col < numCols && map[roomIndex][row][col] != null && map[roomIndex][row][col].getType() != '@';
     }
 
     // Method to find the shortest path to the coin ('$')
@@ -65,12 +65,11 @@ public class MazeMap {
                 int newCol = colCur + colMoves[i];
 
                 // Make sure the move is valid (within bounds, not visited, and not a wall)
-                if (newRow >= 0 && newRow < numRows && newCol >= 0 && newCol < numCols) {
-                    if (!visited[newRow][newCol] && map[currentRoom][newRow][newCol].getType() != '@') {
-                        queue.add(map[currentRoom][newRow][newCol]); // Add valid tile to the queue
-                        visited[newRow][newCol] = true; // Mark as visited
-                        parent[newRow][newCol] = current; // Store where we came from
-                    }
+                if (isValid(newRow, newCol, currentRoom) && !visited[newRow][newCol]) {
+                    Tile nextTile = map[currentRoom][newRow][newCol];
+                    queue.add(nextTile);
+                    visited[newRow][newCol] = true;
+                    parent[newRow][newCol] = current;
                 }
             }
         }
@@ -81,10 +80,14 @@ public class MazeMap {
     private void printPath(Tile[][] parent, Tile start, Tile end) {
         char[][] mapCopy = new char[numRows][numCols]; // Copy of the map for modification
 
-        // Fill mapCopy with original map values
+        // Fill mapCopy with original map values, handling potential null tiles
         for (int r = 0; r < numRows; r++) {
             for (int c = 0; c < numCols; c++) {
-                mapCopy[r][c] = map[0][r][c].getType(); // Start with the map from the first room
+                if (map[0][r][c] != null) {
+                    mapCopy[r][c] = map[0][r][c].getType();
+                } else {
+                    mapCopy[r][c] = ' '; // Default empty space for uninitialized tiles
+                }
             }
         }
 
@@ -95,7 +98,6 @@ public class MazeMap {
             if (step.getType() != '$') {
                 mapCopy[step.getRow()][step.getCol()] = '+'; // Mark path
             }
-
             step = parent[step.getRow()][step.getCol()]; // Move to previous tile
         }
 

@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class p2 {
 	public static void main(String[] args) {
 		
-		String filename = "src/TEST03";
+		String filename = "src/TEST06";
 		readMap(filename);
 	}
 	
